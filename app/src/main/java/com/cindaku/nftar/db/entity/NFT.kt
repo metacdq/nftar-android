@@ -11,6 +11,7 @@ import com.cindaku.nftar.enum.ChainType
 data class NFT(
     @ColumnInfo(name = "nft_id") @PrimaryKey(autoGenerate = true) var NFTID: Int?,
     @ColumnInfo(name = "chain") @TypeConverters(Converters::class) var PROTOCOL: ChainType=ChainType.NEAR,
+    @ColumnInfo(name = "token_id") var tokenID: String,
     @ColumnInfo(name = "account_id") var accountID: Int,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "description") var description: String,
