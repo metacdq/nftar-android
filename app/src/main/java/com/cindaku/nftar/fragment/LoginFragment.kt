@@ -24,7 +24,7 @@ class LoginFragment @Inject constructor(
     private lateinit var loginButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL,android.R.style.Theme_Material_Light_NoActionBar_Fullscreen)
+        setStyle(STYLE_NORMAL,R.style.Theme_NFTARFull)
     }
 
     override fun onCreateView(

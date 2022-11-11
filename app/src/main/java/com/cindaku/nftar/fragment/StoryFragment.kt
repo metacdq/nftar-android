@@ -14,19 +14,22 @@ import com.cindaku.nftar.R
 import com.cindaku.nftar.activity.CameraActivity
 import com.cindaku.nftar.adapter.NFTListAdapter
 import com.cindaku.nftar.db.entity.NFT
+import com.cindaku.nftar.modules.contract.NFTARContract
 import com.cindaku.nftar.modules.repository.UserRepository
 import com.cindaku.nftar.view.StoryView
 import com.cindaku.nftar.viewmodel.StoryViewModel
+import com.knear.android.service.NearMainService
 import com.squareup.picasso.Picasso
 
-class StoryFragment(private val picasso: Picasso, userRepository: UserRepository) : StoryView,Fragment() {
+class StoryFragment(private val picasso: Picasso, userRepository: UserRepository, nearMainService: NearMainService, nftarContract: NFTARContract) : StoryView,Fragment() {
     private lateinit var nftList: RecyclerView
     private lateinit var buyTextView: TextView
     private lateinit var adapter: NFTListAdapter
-    private val storyViewModel: StoryViewModel= StoryViewModel(userRepository)
+    private val storyViewModel: StoryViewModel= StoryViewModel(userRepository, nearMainService, nftarContract)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter= NFTListAdapter(requireContext(), picasso, this)
+        storyViewModel.getNFT()
     }
 
     override fun onCreateView(

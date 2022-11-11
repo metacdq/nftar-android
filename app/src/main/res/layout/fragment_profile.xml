@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/purple_grey"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -22,9 +22,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:id="@+id/userProfileTextView"
-                android:textColor="@color/black"
+                android:textColor="@color/purple_700"
                 android:textSize="24sp"
-                android:textFontWeight="700"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/user_profile" />
@@ -61,6 +60,29 @@
                 android:background="@color/grey"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
+            <TextView
+                android:id="@+id/versionTextview"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_version_1_0_0" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/poweredBy"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/powered_by" />
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/logoNearImageView"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/near_logo" />
             <Button
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
@@ -70,14 +92,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/log_out"/>
 
-            <TextView
-                android:id="@+id/versionTextview"
-                android:textAlignment="center"
-                android:layout_marginTop="15dp"
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_version_1_0_0" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

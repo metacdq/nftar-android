@@ -8,5 +8,4 @@ import com.cindaku.nftar.db.entity.Account
 interface AccountDao {
     @Insert
     fun add(account: Account)
-
 }

@@ -16,7 +16,7 @@ import com.knear.android.service.NearMainService
 class ProfileFragment (mainMenuView: MainMenuView, nearMainService: NearMainService, nftarContract: NFTARContract) : Fragment() {
     private lateinit var logoutButton: Button
     private lateinit var usernameTextView: TextView
-    private val profileViewModel: ProfileViewModel=ProfileViewModel(mainMenuView, nearMainService, nftarContract)
+    private val profileViewModel: ProfileViewModel=ProfileViewModel(mainMenuView, nearMainService)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -36,6 +36,5 @@ class ProfileFragment (mainMenuView: MainMenuView, nearMainService: NearMainServ
         logoutButton.setOnClickListener {
             profileViewModel.logout()
         }
-        profileViewModel.getNFT()
     }
 }

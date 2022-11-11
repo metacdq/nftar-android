@@ -17,7 +17,7 @@ class FragmentModule {
         return ProfileFragment(mainMenuView, nearMainService, nftarContract)
     }
     @Provides
-    fun provideHomeFragment(picasso: Picasso, userRepository: UserRepository): StoryFragment{
-        return StoryFragment(picasso, userRepository)
+    fun provideHomeFragment(picasso: Picasso, userRepository: UserRepository, nearMainService: NearMainService, nftarContract: NFTARContract): StoryFragment{
+        return StoryFragment(picasso, userRepository, nearMainService, nftarContract)
     }
 }
