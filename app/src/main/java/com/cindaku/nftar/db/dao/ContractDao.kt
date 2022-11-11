@@ -9,8 +9,8 @@ import com.cindaku.nftar.enum.ChainType
 
 @Dao
 interface ContractDao {
-    @Query("Select * from contract where contract_name=:contractName and chain=:chainType")
-    fun findContractById(contractName: String, chainType: ChainType): Contract?
+    @Query("Select * from contract where contract_name=:contractName")
+    fun findContractById(contractName: String): Contract?
     @Insert
     fun add(contract: Contract)
     @Update

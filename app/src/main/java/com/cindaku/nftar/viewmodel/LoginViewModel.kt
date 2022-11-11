@@ -8,10 +8,11 @@ import com.knear.android.OnReceiveUri
 import com.knear.android.service.NearMainService
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
-    private val mainMenuView: MainMenuView,
-    private val nearMainService: NearMainService
-): ViewModel() {
+class LoginViewModel: ViewModel() {
+    @Inject
+    lateinit var mainMenuView: MainMenuView
+    @Inject
+    lateinit var nearMainService: NearMainService
     fun processLogin(activity: AppCompatActivity){
         nearMainService.login(activity, object : OnReceiveUri{
             override fun onReceive(uri: Uri) {

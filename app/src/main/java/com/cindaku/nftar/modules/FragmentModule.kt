@@ -1,5 +1,6 @@
 package com.cindaku.nftar.modules
 
+import androidx.work.WorkManager
 import com.cindaku.nftar.fragment.ProfileFragment
 import com.cindaku.nftar.fragment.StoryFragment
 import com.cindaku.nftar.modules.contract.NFTARContract
@@ -13,11 +14,11 @@ import dagger.Provides
 @Module
 class FragmentModule {
     @Provides
-    fun provideProfileFragment(mainMenuView: MainMenuView, nearMainService: NearMainService, nftarContract: NFTARContract): ProfileFragment{
-        return ProfileFragment(mainMenuView, nearMainService, nftarContract)
+    fun provideProfileFragment(): ProfileFragment{
+        return ProfileFragment()
     }
     @Provides
-    fun provideHomeFragment(picasso: Picasso, userRepository: UserRepository, nearMainService: NearMainService, nftarContract: NFTARContract): StoryFragment{
-        return StoryFragment(picasso, userRepository, nearMainService, nftarContract)
+    fun provideHomeFragment(): StoryFragment{
+        return StoryFragment()
     }
 }

@@ -13,10 +13,11 @@ import com.knear.android.service.NearMainService
 import com.squareup.picasso.Picasso
 import dagger.BindsInstance
 import dagger.Component
+import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RoomModule::class,StorageModule::class, UserModule::class, NearServiceModule::class, WorkManagerModule::class, PicassoModule::class])
+@Component(modules = [HttpModules::class, RoomModule::class,StorageModule::class, UserModule::class, NearServiceModule::class, WorkManagerModule::class, PicassoModule::class])
 interface AppComponent {
     @Component.Factory
     interface Factory{
@@ -31,6 +32,7 @@ interface AppComponent {
     fun nearMainService(): NearMainService
     fun workManager(): WorkManager
     fun nftContract(): NFTARContract
+    fun http(): OkHttpClient
     fun picasso(): Picasso
     fun inject(activity: Activity)
 }

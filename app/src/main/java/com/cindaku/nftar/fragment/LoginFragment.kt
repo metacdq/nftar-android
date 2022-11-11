@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.cindaku.nftar.R
 import com.cindaku.nftar.activity.MainActivity
 import com.cindaku.nftar.modules.repository.UserRepository
@@ -14,17 +15,14 @@ import com.cindaku.nftar.viewmodel.LoginViewModel
 import com.knear.android.service.NearMainService
 import javax.inject.Inject
 
-class LoginFragment @Inject constructor(
-    private val userRepository: UserRepository,
-    private val mainMenuView: MainMenuView,
-    private val nearMainService: NearMainService
-)  : DialogFragment() {
-    @Inject
-    lateinit var loginViewModel: LoginViewModel
+class LoginFragment  : DialogFragment() {
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var loginButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL,R.style.Theme_NFTARFull)
+        loginViewModel=ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        (requireActivity() as MainActivity).activityComponent.inject(loginViewModel)
     }
 
     override fun onCreateView(

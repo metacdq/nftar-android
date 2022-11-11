@@ -10,7 +10,6 @@ import com.cindaku.nftar.enum.ChainType
 @Entity
 data class Contract(
     @ColumnInfo(name = "contract_id") @PrimaryKey(autoGenerate = true) var contractID: Int?,
-    @ColumnInfo(name = "chain") @TypeConverters(Converters::class) var PROTOCOL: ChainType=ChainType.NEAR,
     @ColumnInfo(name = "contract_name") var contractName: String,
     @ColumnInfo(name = "base_url") var baseURL: String,
 )

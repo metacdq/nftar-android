@@ -9,4 +9,5 @@ interface MainMenuView {
     fun showLoading()
     fun handleMessage(message: String)
     fun handleFinishLogin(data: Uri)
+    fun reload()
 }

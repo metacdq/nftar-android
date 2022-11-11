@@ -30,15 +30,15 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun logout(){
-        nearMainService.logout()
-        view.showLogin()
-    }
-
     fun attemptLogin(data: Uri){
         Log.d("LOGIN", data.toString())
         if(nearMainService.attemptLogin(data)){
-            view.hideLogin()
+            viewModelScope.launch(Dispatchers.IO){
+                nearMainService.getAccountId()?.let {
+                    userRepository.init(it)
+                }
+            }
+            view.reload()
         }else{
             view.handleMessage("Login Failed")
         }

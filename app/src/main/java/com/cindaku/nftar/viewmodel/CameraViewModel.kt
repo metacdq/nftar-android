@@ -34,7 +34,7 @@ class CameraViewModel @Inject constructor(
     fun startRecording(width: Int, height: Int){
         recording=true
         viewModelScope.launch(Dispatchers.IO) {
-            recordingFile = fileStorage.newMoview("video_nftar_" + Date().time + ".mp4")
+            recordingFile = fileStorage.newMovie("video_nftar_" + Date().time + ".mp4")
             Log.d("RECORD", recordingFile!!.path)
             deepAR.startVideoRecording(recordingFile!!.path, width / 2, height / 2)
         }

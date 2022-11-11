@@ -1,5 +1,6 @@
 package com.cindaku.nftar.activity
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
@@ -23,12 +24,9 @@ class MainActivity: AppCompatActivity(), MainMenuView {
     lateinit var activityComponent: ActivityComponent
     @Inject
     lateinit var mainViewModel: MainViewModel
-    @Inject
-    lateinit var loginDialog: LoginFragment
-    @Inject
-    lateinit var profileFragment: ProfileFragment
-    @Inject
-    lateinit var storyFragment: StoryFragment
+    private lateinit var loginDialog: LoginFragment
+    private lateinit var profileFragment: ProfileFragment
+    private lateinit var storyFragment: StoryFragment
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +36,13 @@ class MainActivity: AppCompatActivity(), MainMenuView {
         setContentView(R.layout.activity_main)
         tabLayout=findViewById(R.id.mainTabLayout)
         viewPager=findViewById(R.id.mainViewPager)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loginDialog= LoginFragment()
+        profileFragment=ProfileFragment()
+        storyFragment=StoryFragment()
         viewPager.adapter=MainViewStateAdapter(this, profileFragment, storyFragment)
         viewPager.isUserInputEnabled=false
         mainViewModel.init()
@@ -84,6 +89,12 @@ class MainActivity: AppCompatActivity(), MainMenuView {
 
     override fun handleFinishLogin(data: Uri) {
         mainViewModel.attemptLogin(data)
+    }
+
+    override fun reload() {
+        val i=Intent(this, MainActivity::class.java)
+        startActivity(i)
+        finish()
     }
 
 }

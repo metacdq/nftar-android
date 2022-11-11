@@ -13,4 +13,5 @@ data class NFTMetadata(
     var extra: String?,
     var reference: String?,
     var reference_hash: String?,
+    var model: String?,
 )

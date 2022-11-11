@@ -7,18 +7,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.cindaku.nftar.R
+import com.cindaku.nftar.activity.MainActivity
 import com.cindaku.nftar.modules.contract.NFTARContract
 import com.cindaku.nftar.view.MainMenuView
 import com.cindaku.nftar.viewmodel.ProfileViewModel
 import com.knear.android.service.NearMainService
 
-class ProfileFragment (mainMenuView: MainMenuView, nearMainService: NearMainService, nftarContract: NFTARContract) : Fragment() {
+class ProfileFragment () : Fragment() {
     private lateinit var logoutButton: Button
     private lateinit var usernameTextView: TextView
-    private val profileViewModel: ProfileViewModel=ProfileViewModel(mainMenuView, nearMainService)
+    private lateinit var profileViewModel: ProfileViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        profileViewModel=ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        (requireActivity() as MainActivity).activityComponent.inject(profileViewModel)
     }
 
     override fun onCreateView(
