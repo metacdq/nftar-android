@@ -54,6 +54,7 @@ class StoryFragment(private val picasso: Picasso, userRepository: UserRepository
 
     override fun onClick(nft: NFT?) {
         val intent= Intent(context, CameraActivity::class.java)
+        intent.putExtra("effect", "file:///android_asset/mask.deepar")
         startActivity(intent)
     }
 }

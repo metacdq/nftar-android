@@ -7,6 +7,7 @@ import com.cindaku.nftar.modules.*
 import com.cindaku.nftar.modules.contract.NFTARContract
 import com.cindaku.nftar.modules.repository.UserModule
 import com.cindaku.nftar.modules.repository.UserRepository
+import com.cindaku.nftar.modules.storage.FileStorage
 import com.cindaku.nftar.modules.storage.Storage
 import com.knear.android.service.NearMainService
 import com.squareup.picasso.Picasso
@@ -25,6 +26,7 @@ interface AppComponent {
     fun activity(): ActivityComponent.Factory
     fun arActivity(): ARActivityComponent.Factory
     fun storage(): Storage
+    fun fileStorage(): FileStorage
     fun userRepository(): UserRepository
     fun nearMainService(): NearMainService
     fun workManager(): WorkManager

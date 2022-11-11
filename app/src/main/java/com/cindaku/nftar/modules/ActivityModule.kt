@@ -12,5 +12,4 @@ class ActivityModule  {
     fun provideMainMenuView(activity: AppCompatActivity): MainMenuView{
         return activity as MainActivity
     }
-
 }

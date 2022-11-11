@@ -8,9 +8,9 @@ import ai.deepar.ar.DeepARImageFormat
 import android.Manifest
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.media.Image
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -27,7 +27,9 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.lifecycle.LifecycleOwner
 import com.cindaku.nftar.NFTARApp
 import com.cindaku.nftar.R
@@ -54,6 +56,7 @@ class CameraActivity : AREventListener, SurfaceHolder.Callback, AppCompatActivit
     private var buffersInitialized = false
     private val NUMBER_OF_BUFFERS = 2
     private val useExternalCameraTexture = false
+    private var effect: String=""
 
     private var width = 0
     private var height = 0
@@ -62,6 +65,11 @@ class CameraActivity : AREventListener, SurfaceHolder.Callback, AppCompatActivit
         arActivityComponent=(application as NFTARApp).appComponent.arActivity().create(this)
         arActivityComponent.inject(this)
         super.onCreate(savedInstanceState)
+        intent.extras?.let {
+            it.getString("effect")?.apply {
+                effect=this
+            }
+        }
         setContentView(R.layout.activity_camera)
         recordImageView=findViewById(R.id.recordImageView)
         switchImageView=findViewById(R.id.switchImageView)
@@ -79,6 +87,24 @@ class CameraActivity : AREventListener, SurfaceHolder.Callback, AppCompatActivit
                 e.printStackTrace()
             }
             initialize()
+        }
+
+        recordImageView.setOnClickListener {
+            if(cameraViewModel.isRecording()){
+                val startDrawable=ContextCompat.getDrawable(baseContext, R.drawable.record_white)
+                recordImageView.setImageDrawable(startDrawable)
+                val file=cameraViewModel.stopRecording()
+                val uri=FileProvider.getUriForFile(baseContext, "com.cindaku.nftar.provider",file)
+                ShareCompat.IntentBuilder(this).setStream(uri)
+                    .setType("video/mp4")
+                    .setChooserTitle("Share video...")
+                    .startChooser()
+
+            }else{
+                val stopDrawable=ContextCompat.getDrawable(baseContext, R.drawable.stop_white)
+                recordImageView.setImageDrawable(stopDrawable)
+                cameraViewModel.startRecording(width, height)
+            }
         }
     }
 
@@ -309,7 +335,7 @@ class CameraActivity : AREventListener, SurfaceHolder.Callback, AppCompatActivit
     override fun initialized() {
         mainSurfaceView.visibility = View.GONE
         mainSurfaceView.visibility = View.VISIBLE
-        cameraViewModel.switchEffect("file:///android_asset/mask2.deepar")
+        cameraViewModel.switchEffect(effect)
     }
 
     override fun faceVisibilityChanged(p0: Boolean) {

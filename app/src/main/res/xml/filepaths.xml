@@ -5,5 +5,5 @@
         path="." />
     <root-path
         name="external_files"
-        path="/storage/emulated/"/>
+        path="/storage/emulated/0/"/>
 </paths>
