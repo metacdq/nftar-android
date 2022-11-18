@@ -1,4 +1,4 @@
-package com.cindaku.nftar
+package com.cindaku.nftar.utils
 
 import android.graphics.*
 import com.squareup.picasso.Transformation

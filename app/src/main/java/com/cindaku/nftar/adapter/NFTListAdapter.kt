@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.cindaku.nftar.CONTRACT_URI
 import com.cindaku.nftar.R
-import com.cindaku.nftar.RoundedTransformation
 import com.cindaku.nftar.db.entity.NFT
 import com.cindaku.nftar.view.StoryView
 import com.cindaku.nftar.view.holder.NFTItemHolder
